@@ -101,11 +101,12 @@ class ReCaptchaViewHelper extends AbstractViewHelper implements SingletonInterfa
                 'recaptcha',
                 '
 					var recaptchaCallback = function() {
-						for (var i = 1; i <= 1000; ++i) {
-							if (document.getElementById(\'g-recaptcha-\' + i)) {
-								grecaptcha.render(\'g-recaptcha-\' + i, {\'sitekey\' : \'' . $key . '\'});
-							}
-						}
+						var tx_recaptcha__elements = document.getElementsByClassName("g-recaptcha");
+                        if (tx_recaptcha__elements.length > 0) {
+                            for (i = 0; i < tx_recaptcha__elements.length; i++) {
+                                grecaptcha.render(tx_recaptcha__elements[i].getAttribute("id"), {\'sitekey\' : \'' . $key . '\'});
+                            }
+                        }
 					};
 					/*]]>*/					
 					</script>
